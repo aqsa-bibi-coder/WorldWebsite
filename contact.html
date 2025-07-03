@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+         * { 
+            box-sizing: border-box; 
+            margin: 0;
+            padding: 0;
+        }
+        body { 
+            font-family: 'Poppins', 'Inter', sans-serif; 
+            overflow-x: hidden; /* Prevent horizontal scrol page */
+        }
+
+        /* Global utility classes */
+        .desktop-only { display: block; }
+        .mobile-only {
+    display: none !important;
+}
+
+
+        /* Top Bar - "GET A FREE AUDIT" for Mobile, Phone for Desktop */
+        .top-audit-bar {
+    background-color: black;
+    color: #fff;
+    padding: 14px 0;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+.top-audit-bar:hover {
+    background-color: #423F3F;
+}
+
+        /* .top-audit-bar i {
+            margin-left: 8px;
+            font-size: 16px;
+        } */
+
+        .top-phone-bar {
+            background-color: white;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+        .phone-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #000;
+        }
+        .phone-icon { 
+            color: orange; 
+            font-size: 20px; 
+            transform: scaleX(-1); /* Flip horizontal */
+        }
+        .proposal-text .label { 
+            font-size: 16px; 
+            color: #000; 
+            font-family: 'Poppins',sans-serif;
+            font-weight: 400;
+        }
+        .phone-number {
+            font-weight: bold;
+            font-size: 18px;
+            color: #000;
+            white-space: nowrap;
+              font-family: 'Poppins',sans-serif;
+            font-weight: 600;
+        }
+
+        /* Navbar */
+        .navbar {
+           display: flex;
+    align-items: center; /* ✅ enables vertical alignment */
+    justify-content: space-between; /* ✅ ensures left-center-right layout */
+            /* padding: 10px 20px;  */
+            position: relative;
+            z-index: 1000; 
+            /* background-color: white; */
+            /* box-shadow: 0 2px 5px rgba(0,0,0,0.05);  */
+        }
+
+        .logo {
+            
+    align-items: center; /* ✅ vertically center the logo */
+    gap: 10px;
+            display: flex;
+            gap:10px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #000;
+              /* padding-left: 150px */
+        }
+        .logo-img {
+            width: 40px;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            font-weight: 500;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        .nav-links > div,
+        .nav-links a {
+            position: relative;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background 0.3s;
+              font-family: 'Poppins',sans-serif;
+            font-weight: 600;
+        }
+        .nav-links a:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* .navbar .right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        } */
+.navbar .right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: auto; /* ✅ pushes it to the right */
+}
+
+        .talk-btn {
+            background-color: #000;
+            color: #fff;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 15px;
+            align-items: right;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+        .talk-btn::after {
+            content: "";
+            position: absolute;
+            bottom: 8px;
+            left: 20%;
+            width: 60%;
+            height: 2px;
+            background-color: transparent;
+            transition: background-color 0.3s ease;
+        }
+        .talk-btn:hover {
+            background-color: orange;
+        }
+        .talk-btn:hover::after {
+            background-color: #fff;
+        }
+
+        /* MEGA MENU - SERVICES (Desktop) */
+        .dropdown-wrapper {
+            display: none;
+            background-color: #f4f2ff;
+            padding: 30px 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+            border-bottom: 1px solid #ccc;
+            border-radius: 0 0 20px 20px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 25%; /* Position below the navbar */
+            z-index: 999;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .dropdown-wrapper.active {
+            display: block;
+        }
+        .dropdown-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+        }
+        .dropdown-columns {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 1000px;
+        }
+        .column {
+            width: 50%;
+        }
+        .column:first-child {
+            border-right: 1px solid #ccc;
+            padding-right: 40px;
+            margin-right: 40px;
+        }
+        .column:last-child {
+            padding-left: 40px;
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #000;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background 0.2s ease;
+            padding: 10px;
+            width: 100%;
+            text-decoration: none;
+        }
+        .dropdown-item i {
+            font-size: 18px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 50%;
+            color: orange;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .dropdown-item:hover {
+            background-color: #ececec;
+        }
+
+        /* Simple Dropdown (Desktop) */
+        .simple-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px); /* shows 10px below the link */
+            left: 0;
+            background: white;
+            padding: 10px 0;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            min-width: 200px;
+        }
+        .simple-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        .simple-dropdown a:hover {
+            background-color: #f0f0f0;
+        }
+        .nav-links .dropdown-parent:hover .simple-dropdown {
+            display: block;
+        }
+
+        /* Mobile Menu Icon */
+        .mobile-menu-icon {
+            display: none; /* Hidden by default on desktop */
+            font-size: 24px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 1001; /* Above navbar */
+            transform: translateX(100%); /* Start off-screen to the right */
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu-overlay.active {
+            transform: translateX(0); /* Slide in */
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .mobile-menu-close {
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-content {
+            flex-grow: 1;
+            overflow-y: auto; /* Enable scrolling for content */
+            padding: 0 15px;
+        }
+
+        .mobile-menu-item {
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            color: #000; /* Ensure text color is black */
+            text-decoration: none; /* Remove underline for anchor tags */
+        }
+        .mobile-menu-item:last-child {
+            border-bottom: none;
+        }
+        .mobile-menu-item a {
+            text-decoration: none;
+            color: #000;
+            width: 100%;
+            display: block; /* Make the link fill the item */
+        }
+        .mobile-menu-item .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu-item.open .toggle-icon {
+            transform: rotate(90deg); /* Rotate for expanded state */
+        }
+
+        .mobile-submenu {
+            display: none;
+            flex-direction: column;
+            background-color: #f9f9f9;
+            padding: 10px 0;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+        .mobile-menu-item.open + .mobile-submenu { /* Selects the sibling submenu */
+            display: flex;
+        }
+        .mobile-submenu a {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 400;
+            color: #555;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+        .mobile-submenu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Media Queries for Mobile */
+        @media (max-width: 960px) {
+            .desktop-only { display: none !important; }
+            .mobile-only { display: block !important; }
+
+            .top-phone-bar { display: none; } /* Hide desktop phone bar on mobile */
+
+            .navbar {
+                padding: 10px 15px; /* Adjust padding for mobile */
+            }
+            .navbar .right { display: none; } /* Hide desktop talk button */
+            .nav-links { display: none; } /* Hide desktop nav links */
+            .mobile-menu-icon { display: block; } /* Show mobile menu icon */
+
+            /* Ensure desktop dropdowns are hidden on mobile */
+            .dropdown-wrapper,
+            .simple-dropdown {
+                display: none !important;
+            }
+        }
+      @media (max-width: 960px) {
+    .mobile-only { display: block !important; }
+}
+.container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: auto;
+      gap: 50px;
+      margin-top: 90px;
+    }
+
+    .left-text {
+      flex: 1;
+    }
+
+    .left-text h5 {
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: #666;
+      margin-bottom: 10px;
+        font-family: 'Poppins',sans-serif;
+            font-weight: 600;
+    }
+
+    .left-text h1 {
+      font-size: 48px;
+      font-weight: bold;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #000;
+        font-family: 'Poppins',sans-serif;
+            font-weight: 700;
+    }
+
+    .left-text p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 30px;
+        font-family: 'Poppins',sans-serif;
+            font-weight: 400;
+    }
+
+    .contact-details {
+      display: flex;
+      gap: 180px;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 20px;
+    }
+
+    .contact-details div {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .map-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .map-section img {
+      width: 20px;
+      height: 20px;
+    }
+
+   .map-section a {
+  position: relative;
+  margin-left: 20px;
+  color: black;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.map-section a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px; /* underline thoda neeche kar diya */
+  width: 100%;
+  height: 2px;
+  background-color: orange;
+  transition: 0.3s ease;
+}
+
+.map-section a:hover {
+  color: orange;
+}
+
+.map-section a:hover::after {
+  background-color: orange;
+}
+
+    /* .map-section a:hover {
+      text-decoration: underline;
+    } */
+
+    .right-form-wrapper {
+      position: relative;
+    }
+
+    .star {
+      position: absolute;
+      top: -30px;
+      right: -3px;
+      width: 70px;
+      height: 70px;
+      transform: rotate(15deg);
+    }
+
+    .right-form {
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 10px 10px 0 #000;
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .right-form form input,
+    .right-form form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .right-form form textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    .right-form button {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 14px;
+      width: 100%;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .right-form button:hover {
+      background:orange;
+    }
+
+    /* @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .right-form-wrapper {
+        margin-top: 40px;
+      }
+
+      .left-text h1 {
+        font-size: 36px;
+      }
+    } */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .left-text {
+    text-align: center;
+  }
+
+  .left-text h1 {
+    font-size: 32px;
+  }
+
+  .left-text h5 {
+    font-size: 12px;
+  }
+
+  .left-text p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .contact-details {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    align-items: center;
+  }
+
+  .map-section {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .map-section a {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .right-form-wrapper {
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .right-form {
+    padding: 30px 20px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .star {
+    top: -20px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+    .curve-line {
+      width: 100%;
+      margin-top: 130px;
+    }
+
+    svg {
+      width: 100%;
+      height: 40px;
+    }
+ .locations-section {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .locations-section h2 {
+      font-size: 36px;
+      margin-bottom: 30px;
+        font-family: 'Poppins',sans-serif;
+            font-weight: 700;
+    }
+
+    .location-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .location-card {
+      background: #f9f9fb;
+      border-radius: 30px;
+      padding: 30px 25px;
+      width: 300px;
+      box-sizing: border-box;
+    }
+
+    .map-icon {
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      background: white;
+      border-radius: 50%;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .address {
+      font-size: 16px;
+      font-weight: bold;
+      color: #000;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    .label {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .phone {
+      font-size: 16px;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 20px;
+    }
+
+  .location-card a {
+  position: relative;
+  font-size: 13px;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.location-card a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px; /* underline ko neeche shift kiya */
+  height: 2px;
+  width: 100%;
+  background-color: orange;
+  transition: 0.3s ease;
+}
+
+.location-card a:hover {
+  color: orange;
+}
+
+.location-card a:hover::after {
+  background-color: orange;
+}
+@media (max-width: 768px) {
+  .locations-section {
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .locations-section h2 {
+    font-size: 28px;
+    text-align: center;
+      font-family: 'Poppins',sans-serif;
+            font-weight: 700;
+  }
+
+  .location-boxes {
+    flex-direction: column;
+    align-items: flex-end; /* 👈 shifts cards slightly to right */
+    gap: 30px;
+  }
+
+  .location-card {
+    width: 100%;
+    max-width: 320px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .address,
+  .phone,
+  .label {
+    font-size: 14px;
+  }
+
+  .map-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+    .testimonial-section {
+      background-color: #f9f9fb;
+      padding: 60px 40px;
+      border-radius: 30px;
+      max-width: 1200px;
+      margin: 50px auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .testimonial-left {
+      max-width: 600px;
+      flex: 1;
+      position: relative;
+      order: 1;
+    }
+
+    .quote-icon {
+      font-size: 50px;
+      color: orange;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-text-wrapper {
+      position: relative;
+      min-height: 180px;
+    }
+
+    .testimonial-block {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: all 0.6s ease;
+    }
+
+    .testimonial-block.active {
+      opacity: 1;
+      transform: translateX(0%);
+      position: relative;
+    }
+
+    .testimonial-text {
+      font-size: 20px;
+      font-style: italic;
+      color: #111;
+      line-height: 1.6;
+      margin-bottom: 20px;
+        font-family: 'Poppins',sans-serif;
+            font-weight: 400;
+    }
+
+    .author {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .position {
+      color: #555;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .nav-buttons {
+      margin-top: 30px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-buttons button {
+      background: white;
+      border: none;
+      border-radius: 50%;
+      color: orange;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s;
+    }
+    /* .nav-buttons button i {
+  color: inherit;
+} */
+
+.nav-buttons button i {
+  color:orange !important;
+}
+
+    .nav-buttons button:hover {
+      background: #e0e0e0;
+    }
+
+    .testimonial-right {
+      flex: 1;
+      min-width: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      order: 2;
+    }
+
+    .dotted-arrow {
+      width: 320px;
+      height: 200px;
+      margin-bottom: 20px;
+    }
+
+    .review-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .stars {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+
+    .stars i {
+      color: gold;
+    }
+
+    .stars span {
+      font-weight: 600;
+    }
+
+    .view-all {
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      gap: 8px;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .view-all i {
+      transition: transform 0.3s;
+    }
+
+    .view-all:hover i {
+      transform: translateX(4px);
+    }
+
+    .avatars {
+      display: flex;
+    }
+
+    .avatars img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-left: -10px;
+    }
+.quote-icon img {
+  width: 70px;
+  filter: brightness(0) saturate(100%) invert(17%) sepia(92%) saturate(4699%) hue-rotate(212deg) brightness(95%) contrast(101%);
+  margin-bottom: 20px;
+}
+    .avatars img:first-child {
+      margin-left: 0;
+    }
+
+    @media (max-width: 768px) {
+      .testimonial-content-wrapper {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .testimonial-left {
+        order: 1;
+      }
+
+      .testimonial-right {
+        order: 2;
+        align-items: flex-start;
+      }
+
+      .review-row {
+        justify-content: flex-start;
+        gap: 15px;
+      }
+
+      .nav-buttons {
+        display: flex;
+        margin-top: 20px;
+      }
+
+      .dotted-arrow {
+        display: none;
+      }
+    }
+    .top-container {
+      background-color: #f3ecff;
+      border-radius: 30px 30px 0 0;
+      padding: 60px 40px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .top-left h2 {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin: 0;
+        font-family: 'Poppins',sans-serif;
+            font-weight: 700;
+    }
+
+    .top-right {
+      text-align: right;
+      min-width: 260px;
+    }
+
+    .top-right p {
+      font-size: 14px;
+      margin-bottom: 10px;
+        font-family: 'Poppins',sans-serif;
+            font-weight: 400;
+    }
+
+    .top-right .phone {
+      font-size: 18px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .top-right .cta-btn {
+      background: #000;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .partner-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 60px;
+      flex-wrap: wrap;
+    }
+
+    .partner-logos {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .partner-logos img {
+      height: 30px;
+      object-fit: contain;
+    }
+
+    .roas {
+      text-align: right;
+    }
+
+    .roas .value {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .wave-divider {
+      background: #fff;
+      height: 50px;
+      border-radius: 50px 50px 0 0;
+      margin-top: -25px;
+    }
+
+    footer {
+      background: #fff;
+      padding: 50px 40px 30px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .solutions-column {
+      margin-bottom: 40px;
+    }
+
+    .solutions-column h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+        font-family: 'Poppins',sans-serif;
+            font-weight: 700;
+    }
+
+    .solutions-grid {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .solutions-grid ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      min-width: 180px;
+        font-family: 'Poppins',sans-serif;
+            font-weight: 400;
+    }
+
+    .solutions-grid ul li {
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 30px 0;
+    }
+
+    .footer-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-evenly;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .footer-links-row a {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links-row a:hover {
+      color: orange;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: #777;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 14px;
+    }
+
+    .social-icons a {
+      color: #000;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .top-row,
+      .partner-section,
+      .footer-bottom,
+      .solutions-grid,
+      .footer-links-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .top-right,
+      .roas {
+        text-align: left;
+      }
+    }
+    .curve-line {
+
+      width: 100%;
+      margin-top: 70px;
+
+    }
+
+    svg {
+
+      width: 100%;
+
+      height: 60px;
+
+    }
+    </style>
+</head>
+<body>
+      <div class="top-audit-bar mobile-only" onclick="closeMobileMenu()">
+        GET A FREE AUDIT <i class="fas fa-arrow-right"></i>
+    </div> 
+
+    <!-- Top Phone Bar (Desktop Only) -->
+    <div class="top-phone-bar desktop-only">
+        <div class="phone-container">
+            <i class="fas fa-phone-alt phone-icon"></i>
+            <div class="proposal-text">
+                <span class="label">Get a Proposal:</span><br>
+                <span class="phone-number">+92 300 1234567</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="your-logo.png" alt="Logo" class="logo-img" />
+            NUMÉRIQUE
+        </div>
+
+        <!-- Desktop Nav Links -->
+        <div class="nav-links desktop-only">
+            <a href="index.html">HOME</a>
+
+            <!-- SERVICES Mega Dropdown Trigger -->
+            <div class="nav-item">
+                <a href="#" id="servicesTrigger">SERVICES</a>
+            </div>
+
+            <!-- WHO WE ARE Simple Dropdown -->
+            <div class="nav-item dropdown-parent">
+                <a href="#">WHO WE ARE </a>
+                <div class="simple-dropdown">
+                    <a href="about.html">About</a>
+                    <a href="career.html">Career</a>
+                    <a href="team.html">Meet the Team</a>
+                </div>
+            </div>
+
+            <!-- SUCCESS STORIES Simple Dropdown -->
+            <div class="nav-item dropdown-parent">
+                <a href="successstories.html">SUCCESS STORIES </a>
+                <div class="simple-dropdown">
+                    <a href="awards.html">Awards</a>
+                    <!-- <a href="reviews.html">Reviews</a> -->
+                </div>
+            </div>
+
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">CONTACT US</a>
+        </div>
+
+        <div class="right desktop-only">
+            <button class="talk-btn">LET’S TALK <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <div class="mobile-menu-icon" onclick="openMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+
+    <!-- SERVICES Mega Dropdown (Desktop Only) -->
+    <div class="dropdown-wrapper desktop-only" id="servicesDropdown">
+        <div class="dropdown-container">
+            <div class="dropdown-columns">
+                <div class="column">
+                    <a class="dropdown-item" href="software.html"><i class="fas fa-search"></i><span>Software Development</span></a>
+                    <a class="dropdown-item" href="website.html"><i class="fas fa-globe"></i><span>Website Development</span></a>
+                    <a class="dropdown-item" href="application.html"><i class="fas fa-envelope"></i><span>Application Development</span></a>
+                    <a class="dropdown-item" href="access.html"><i class="fas fa-rocket"></i><span>Access Control system</span></a>
+                </div>
+                <div class="column">
+                    <a class="dropdown-item" href="cctv.html"><i class="fas fa-comments"></i><span>CCTV Sureillance</span></a>
+                    <a class="dropdown-item" href="marketing.html"><i class="fas fa-shopping-cart"></i><span>Digital Mekrting</span></a>
+                    <a class="dropdown-item" href="graphics.html"><i class="fas fa-user-friends"></i><span>Graphics Designing</span></a>
+                    <a class="dropdown-item" 
+                    href="networking.html"><i class="fas fa-store"></i><span>Networking</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="your-logo.png" alt="Logo" class="logo-img" />
+                NUMÉRIQUE
+            </div>
+            <i class="fas fa-times mobile-menu-close" onclick="closeMobileMenu()"></i>
+        </div>
+        <div class="mobile-menu-content">
+            <!-- Marketing Solutions -->
+            <div class="mobile-menu-item" onclick="toggleSubmenu(this)">
+                <span>Marketing Solutions</span>
+                <i class="fas fa-chevron-right toggle-icon"></i>
+            </div>
+            <div class="mobile-submenu">
+                <a href="software.html">Software Development</a>
+                <a href="website.html">Website Devlopment</a>
+                <a href="application.html">Application Development</a>
+                <a href="access.html">Access Control system</a>
+                <a href="cctv.html">CCTV Sureillance</a>
+                <a href="marketing.html">Digital Marketing</a>
+                <a href="graphics.html">Graphics Designing</a>
+                <a href="networking.html">Networking</a>
+            </div>
+
+            <!-- Who We Are -->
+            <div class="mobile-menu-item" onclick="toggleSubmenu(this)">
+                <span>Who We Are</span>
+                <i class="fas fa-chevron-right toggle-icon"></i>
+            </div>
+            <div class="mobile-submenu">
+                <a href="about.html">About</a>
+                <a href="career.html">Career</a>
+                <a href="team.html">Meet the Team</a>
+            </div>
+
+            <!-- Success Stories -->
+            <div class="mobile-menu-item" onclick="toggleSubmenu(this)">
+                <span>Success Stories</span>
+                <i class="fas fa-chevron-right toggle-icon"></i>
+            </div>
+            <div class="mobile-submenu">
+                <a href="awards.html">Awards</a>
+                <a href="reviews.html">Reviews</a>
+            </div>
+
+            <a href="faq.html" class="mobile-menu-item">FAQ</a>
+            <a href="contact.html" class="mobile-menu-item">CONTACT US</a>
+        </div>
+    </div>
+     <div class="container">
+    <!-- Left Side -->
+    <div class="left-text">
+      <h5>Contact</h5>
+      <h1>We’re here to help you grow</h1>
+      <p>
+        Feel free to reach out to us through your preferred method of contact. We are eager to connect with you and explore how our digital marketing team can contribute to your success.
+      </p>
+
+      <!-- Contact Info -->
+      <div class="contact-details">
+        <div>
+          <strong>Phone number:</strong><br />
+          888-400-5050
+        </div>
+        <div>
+          <strong>Email address:</strong><br />
+          marketing@numerique.com
+        </div>
+      </div>
+
+      <!-- Map Info -->
+      <div class="map-section">
+        <img src="images/map1.png" alt="map icon" />
+        <span>915 Broadway Ste 501, New York, NY 10010</span>
+        <a href="https://www.google.com/maps?q=915+Broadway+Ste+501,+New+York,+NY+10010" target="_blank">View on Map</a>
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="right-form-wrapper">
+      <img src="images/image-removebg-preview.png" alt="star" class="star" />
+      <div class="right-form">
+        <form>
+          <input type="text" placeholder="Name" required />
+          <input type="email" placeholder="Email" required />
+          <input type="text" placeholder="Company name" />
+          <input type="tel" placeholder="Phone number" />
+          <textarea placeholder="What can we help you with?"></textarea>
+          <button type="submit">GET IN TOUCH &rarr;</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="curve-line">
+    <svg viewBox="0 0 1000 60" preserveAspectRatio="none">
+      <path d="M0,30 H400 C450,30 450,5 500,5 C550,5 550,30 600,30 H1000"
+        stroke="#cfcbe5" stroke-width="2" fill="none" />
+    </svg>
+  </div>
+
+  <!-- Locations Section -->
+   <section class="locations-section">
+    <h2>Locations</h2>
+    <div class="location-boxes">
+
+      <!-- Card 1 -->
+      <div class="location-card">
+        <img src="images/map1.png" alt="map" class="map-icon" />
+        <p class="address">San Francisco<br>1446 Vorwuw Parkway</p>
+        <p class="label">Phone number:</p>
+        <p class="phone">888-400-5050</p>
+        <a href="#">VIEW ON MAP</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="location-card">
+        <img src="images/map1.png" alt="map" class="map-icon" />
+        <p class="address">Chicago<br>1849 Usavom View</p>
+        <p class="label">Phone number:</p>
+        <p class="phone">668-220-4040</p>
+        <a href="#">VIEW ON MAP</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="location-card">
+        <img src="images/map1.png" alt="map" class="map-icon" />
+        <p class="address">Boston<br>1660 Dodgig Place</p>
+        <p class="label">Phone number:</p>
+        <p class="phone">230-320-4040</p>
+        <a href="#">VIEW ON MAP</a>
+      </div>
+
+    </div>
+  </section>
+ <section class="testimonial-section">
+    <div class="testimonial-content-wrapper">
+      <div class="testimonial-left">
+        <div class="quote-icon"><img src="images/comma.png"></div>
+        <div class="testimonial-text-wrapper" id="testimonialWrapper">
+          <div class="testimonial-block active">
+            <p class="testimonial-text">&bdquo;The entire staff at Numerique has been phenomenal. They are quick with their replies and incredibly helpful.</p>
+            <div class="author">Edward Kennedy</div>
+            <div class="position">Director, Client Experience</div>
+          </div>
+          <div class="testimonial-block">
+            <p class="testimonial-text">&bdquo;Excellent SEO services that truly boosted our ranking. We couldn’t be happier with the results.</p>
+            <div class="author">Samantha Lee</div>
+            <div class="position">Marketing Head, GreenSoft</div>
+          </div>
+          <div class="testimonial-block">
+            <p class="testimonial-text">&bdquo;Creative, professional, and strategic. Highly recommend them for digital marketing success!</p>
+            <div class="author">Michael Brown</div>
+            <div class="position">CEO, MarketPlus</div>
+          </div>
+        </div>
+        <div class="nav-buttons">
+          <button id="prev"><i class="fas fa-arrow-left"></i></button>
+          <button id="next"><i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <div class="testimonial-right">
+        <svg class="dotted-arrow" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#000" />
+            </marker>
+          </defs>
+          <path d="M280,10 C250,100 100,120 230,180" stroke="#000" stroke-width="2" fill="none" stroke-dasharray="6,6" marker-end="url(#arrowhead)" />
+        </svg>
+
+        <div class="review-row">
+          <div class="stars">
+            <div>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span>5000+ Client reviews</span>
+          </div>
+          <div class="view-all">View all reviews <i class="fas fa-arrow-right"></i></div>
+          <div class="avatars">
+            <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="User 1" />
+            <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="User 2" />
+            <img src="https://randomuser.me/api/portraits/men/13.jpg" alt="User 3" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+   <!-- Top Container Section -->
+  <div class="top-container">
+    <div class="top-row">
+      <div class="top-left">
+        <h2>See how we can help<br>your business grow with<br>digital marketing</h2>
+      </div>
+      <div class="top-right">
+        <p>Ready to speak with a marketing expert? Give us a ring</p>
+        <span class="phone">888-400-5050</span>
+        <a href="#" class="cta-btn">Get a free audit</a>
+      </div>
+    </div>
+<div class="curve-line">
+
+    <svg viewBox="0 0 1000 60" preserveAspectRatio="none">
+
+      <path d="M0,30 
+
+               H400 
+
+               C450,30 450,5 500,5 
+
+               C550,5 550,30 600,30 
+
+               H1000" 
+
+            stroke="#cfcbe5" 
+
+            stroke-width="2" 
+
+            fill="none"/>
+
+    </svg>
+
+  </div>
+    <div class="partner-section">
+      <div class="partner-logos">
+        <img src="cloudicon.png" alt="Google Cloud">
+        <img src="meta.png" alt="Meta">
+        <!-- <img src="" alt="Google Partner"> -->
+        <img src="shopify-removebg-preview.png" alt="Shopify">
+        <img src="tick.png" alt="TikTok">
+      </div>
+      <div class="roas">
+        <div class="value">6.7 <small>/ Average ROAS</small></div>
+        <p>across our 100+ Global Clients on SEO, PPC & Social</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave Divider -->
+  <div class="wave-divider"></div>
+ <footer>
+    <!-- Solutions Grid Section -->
+    <div class="footer-column solutions-column">
+      <h4>SOLUTIONS</h4>
+      <div class="solutions-grid">
+        <ul>
+          <li>Paid search marketing</li>
+          <li>Email marketing</li>
+        </ul>
+        <ul>
+          <li>Social Media Marketing</li>
+          <li>Influencer marketing</li>
+        </ul>
+        <ul>
+          <li>Search engine optimization</li>
+          <li>Conversion rate optimization</li>
+        </ul>
+        <ul>
+          <li>Google shopping</li>
+          <li>Amazon shopping</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider below solutions -->
+    <hr class="footer-divider" />
+
+    <!-- Links row -->
+       <!-- <a href="#">About</a>
+      <a href="#">Blog</a>
+      <a href="#">Careers</a>
+      <a href="#">Team</a>
+      <a href="#">Success Stories</a>
+      <a href="#">Awards</a>
+      <a href="#">Contact</a> -->
+    <div class="footer-links-row">
+    
+      <div>
+        &copy; 2025 VamTam. All rights reserved. &nbsp;
+        <a href="#">Terms & Conditions</a> &nbsp;
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div class="social-icons">
+  <a href="#"><i class="fab fa-instagram"></i></a>
+  <a href="#"><i class="fab fa-twitter"></i></a>
+  <a href="#"><i class="fab fa-facebook-f"></i></a>
+  <a href="#"><i class="fab fa-youtube"></i></a>
+</div>
+    </div>
+
+    <!-- Another divider -->
+    <hr class="footer-divider" />
+
+    <!-- Bottom Footer -->
+    <!-- <div class="footer-bottom">
+      <div>
+        &copy; 2025 VamTam. All rights reserved. &nbsp;
+        <a href="#">Terms & Conditions</a> &nbsp;
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div class="social-icons">
+  <a href="#"><i class="fab fa-instagram"></i></a>
+  <a href="#"><i class="fab fa-twitter"></i></a>
+  <a href="#"><i class="fab fa-facebook-f"></i></a>
+  <a href="#"><i class="fab fa-youtube"></i></a>
+</div> -->
+  <!-- <div class="footer-bottom">
+      <div>
+        &copy; 2025 VamTam. All rights reserved. &nbsp;
+        <a href="#">Terms & Conditions</a> &nbsp;
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div class="social-icons">
+  <a href="#"><i class="fab fa-instagram"></i></a>
+  <a href="#"><i class="fab fa-twitter"></i></a>
+  <a href="#"><i class="fab fa-facebook-f"></i></a>
+  <a href="#"><i class="fab fa-youtube"></i></a>
+</div> -->
+<div style="font-size: 14px; color: #666; padding: 5px 0;">
+  This is some placeholder dummy text for demonstration purposes. You can replace this with any footer note, disclaimer, or custom message relevant to your website content.
+</div>
+  </footer>
+    <script>
+        const blocks = document.querySelectorAll('.testimonial-block');
+    let index = 0;
+
+    function showText(newIndex, direction = 'right') {
+      blocks.forEach((b) => {
+        b.classList.remove('active');
+        b.style.transition = 'none';
+        b.style.transform = direction === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
+        b.style.opacity = 0;
+      });
+
+      const current = blocks[newIndex];
+      current.classList.add('active');
+      current.style.transition = 'all 0.6s ease';
+      current.style.transform = 'translateX(0%)';
+      current.style.opacity = 1;
+
+      index = newIndex;
+    }
+
+    document.getElementById('next').addEventListener('click', () => {
+      let newIndex = (index + 1) % blocks.length;
+      showText(newIndex, 'right');
+    });
+
+    document.getElementById('prev').addEventListener('click', () => {
+      let newIndex = (index - 1 + blocks.length) % blocks.length;
+      showText(newIndex, 'left');
+    });
+
+    setInterval(() => {
+      let newIndex = (index + 1) % blocks.length;
+      showText(newIndex, 'right');
+    }, 5000);
+         const servicesTrigger = document.getElementById('servicesTrigger');
+    const servicesDropdown = document.getElementById('servicesDropdown');
+    const dropdownParents = document.querySelectorAll('.nav-item.dropdown-parent');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+    // Desktop: show on hover for services mega dropdown
+    function handleDesktopServicesDropdown() {
+        servicesTrigger.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 960) {
+                servicesDropdown.classList.add('active');
+            }
+        });
+
+        servicesTrigger.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 960) {
+                setTimeout(() => {
+                    if (!servicesDropdown.matches(':hover')) {
+                        servicesDropdown.classList.remove('active');
+                    }
+                }, 200);
+            }
+        });
+
+        servicesDropdown.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 960) {
+                servicesDropdown.classList.add('active');
+            }
+        });
+
+        servicesDropdown.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 960) {
+                servicesDropdown.classList.remove('active');
+            }
+        });
+    }
+
+    // Desktop: show on hover for simple dropdowns
+    dropdownParents.forEach(parent => {
+        const parentLink = parent.querySelector('a');
+        const simpleDropdown = parent.querySelector('.simple-dropdown');
+
+        parentLink.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 960) {
+                simpleDropdown.style.display = 'block';
+            }
+        });
+
+        parent.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 960) {
+                setTimeout(() => {
+                    if (!parent.matches(':hover')) {
+                        simpleDropdown.style.display = 'none';
+                    }
+                }, 200);
+            }
+        });
+    });
+
+    // Mobile: Open mobile menu overlay
+    function openMobileMenu() {
+        mobileMenuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling background
+    }
+
+    // Mobile: Close mobile menu overlay
+    function closeMobileMenu() {
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+        // Collapse all submenus when closing the main menu
+        document.querySelectorAll('.mobile-menu-item.open').forEach(item => {
+            item.classList.remove('open');
+        });
+    }
+
+    // Mobile: Toggle submenu
+    function toggleSubmenu(item) {
+        if (window.innerWidth <= 960) {
+            const submenu = item.nextElementSibling;
+            // Check if the next sibling is a submenu
+            if (submenu && submenu.classList.contains('mobile-submenu')) {
+                item.classList.toggle('open');
+                // Close other open submenus within the mobile menu content
+                document.querySelectorAll('.mobile-menu-content > .mobile-menu-item.open').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('open');
+                    }
+                });
+            } else {
+                // If it's a direct link, navigate
+                const link = item.querySelector('a');
+                if (link) {
+                    window.location.href = link.href;
+                }
+            }
+        }
+    }
+
+    // Attach to window object to be accessible from inline onclick
+    window.openMobileMenu = openMobileMenu;
+    window.closeMobileMenu = closeMobileMenu;
+    window.toggleSubmenu = toggleSubmenu;
+
+    // Handle resize to reset mobile menu state
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 960) {
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            document.querySelectorAll('.mobile-menu-item.open').forEach(item => {
+                item.classList.remove('open');
+            });
+        }
+    });
+
+    // Initial binding for desktop dropdowns
+    handleDesktopServicesDropdown();
+    </script>
+</body>
+</html>

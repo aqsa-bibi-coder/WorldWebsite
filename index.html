@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <title> C World</title>
+
+</head>
+<body>
+  <header>
+     <div class="top-audit-bar mobile-only" onclick="closeMobileMenu()">
+        GET A FREE AUDIT <i class="fas fa-arrow-right"></i>
+    </div> 
+    <div class="top-phone-bar desktop-only">
+        <div class="phone-container">
+            <i class="fas fa-phone-alt phone-icon"></i>
+            <div class="proposal-text">
+                <span class="label">Get a Proposal:</span><br>
+                <span class="phone-number">+92 300 1234567</span>
+            </div>
+        </div>
+      </div>
+    <div class="navbar">
+        <div class="logo">
+            <img src="your-logo.png" alt="Logo" class="logo-img" />
+            NUMÉRIQUE
+        </div>
+        <div class="nav-links desktop-only">
+            <a href="index.html">HOME</a>
+            <div class="nav-item">
+                <a href="#" id="servicesTrigger">SERVICES</a>
+            </div>
+            <div class="nav-item dropdown-parent">
+                <a href="#">WHO WE ARE </a>
+                <div class="simple-dropdown">
+                    <a href="about.html">About</a>
+                    <a href="career.html">Career</a>
+                    <a href="team.html">Meet the Team</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown-parent">
+                <a href="successstories.html">SUCCESS STORIES </a>
+                <div class="simple-dropdown">
+                    <a href="awards.html">Awards</a>
+                    <!-- <a href="reviews.html">Reviews</a> -->
+                </div>
+            </div>
+
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">CONTACT US</a>
+        </div>
+
+        <div class="right desktop-only">
+            <button class="talk-btn">LET’S TALK <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <div class="mobile-menu-icon" onclick="openMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    <div class="dropdown-wrapper desktop-only" id="servicesDropdown">
+        <div class="dropdown-container">
+            <div class="dropdown-columns">
+                <div class="column">
+                    <a class="dropdown-item" href="software.html"><i class="fas fa-search"></i><span>Software Development</span></a>
+                    <a class="dropdown-item" href="website.html"><i class="fas fa-globe"></i><span>Website Development</span></a>
+                    <a class="dropdown-item" href="application.html"><i class="fas fa-envelope"></i><span>Application Development</span></a>
+                    <a class="dropdown-item" href="access.html"><i class="fas fa-rocket"></i><span>Access Control system</span></a>
+                </div>
+                <div class="column">
+                    <a class="dropdown-item" href="cctv.html"><i class="fas fa-comments"></i><span>CCTV Sureillance</span></a>
+                    <a class="dropdown-item" href="marketing.html"><i class="fas fa-shopping-cart"></i><span>Digital Mekrting</span></a>
+                    <a class="dropdown-item" href="graphics.html"><i class="fas fa-user-friends"></i><span>Graphics Designing</span></a>
+                    <a class="dropdown-item" 
+                    href="networking.html"><i class="fas fa-store"></i><span>Networking</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="your-logo.png" alt="Logo" class="logo-img" />
+                NUMÉRIQUE
+            </div>
+            <i class="fas fa-times mobile-menu-close" onclick="closeMobileMenu()"></i>
+        </div>
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-item" onclick="toggleSubmenu(this)">
+                <span>Marketing Solutions</span>
+                <i class="fas fa-chevron-right toggle-icon"></i>
+            </div>
+            <div class="mobile-submenu">
+                <a href="software.html">Software Development</a>
+                <a href="website.html">Website Devlopment</a>
+                <a href="application.html">Application Development</a>
+                <a href="access.html">Access Control system</a>
+                <a href="cctv.html">CCTV Sureillance</a>
+                <a href="marketing.html">Digital Marketing</a>
+                <a href="graphics.html">Graphics Designing</a>
+                <a href="networking.html">Networking</a>
+            </div>
+            <div class="mobile-menu-item" onclick="toggleSubmenu(this)">
+                <span>Who We Are</span>
+                <i class="fas fa-chevron-right toggle-icon"></i>
+            </div>
+            <div class="mobile-submenu">
+                <a href="about.html">About</a>
+                <a href="career.html">Career</a>
+                <a href="team.html">Meet the Team</a>
+            </div>
+            <div class="mobile-menu-item" onclick="toggleSubmenu(this)">
+                <span>Success Stories</span>
+                <i class="fas fa-chevron-right toggle-icon"></i>
+            </div>
+            <div class="mobile-submenu">
+                <a href="awards.html">Awards</a>
+                <a href="reviews.html">Reviews</a>
+            </div>
+
+            <a href="faq.html" class="mobile-menu-item">FAQ</a>
+            <a href="contact.html" class="mobile-menu-item">CONTACT US</a>
+        </div>
+    </div>
+    </header>
+    <!-- Blue Section -->
+     <div class="blue-section">
+    <div class="blue-content">
+      <div class="left-content">
+        <h1 id="heading">Digital <br>marketing that<br> drives revenue</h1>
+        <p id="para">It’s your turn to shine when we put the spotlight on your brand.<br>
+          We help get the attention and revenues your business deserves in <br>the digital world.</p>
+
+        <div class="form">
+          <div class="progress-container">
+            <div class="progress-bar"></div>
+          </div>
+          <form class="step-form">
+            <div class="input-row">
+              <input type="text" class="inputField" placeholder="Email" required />
+              <button type="button" class="prevBtn">Previous</button>
+              <button type="submit" class="nextBtn">Next</button>
+            </div>
+            <div class="success-msg">✔ Your Submission was successful</div>
+          </form>
+        </div>
+      </div>
+
+      <div class="t-layout">
+        <img src="images/box1.png" alt="Box1" class="box1" />
+        <div class="right-boxes">
+          <img src="images/box2.png" alt="Box2" />
+          <img src="images/box3.png" alt="Box3" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="partner-section">
+    <div class="partner-content">
+      <div class="partner-text">
+        <h3>A PARTNER, NOT <br> A VENDOR</h3>
+      </div>
+      <div class="partner-logos">
+        <img src="google-cloud.png" alt="Google Cloud Partner" />
+        <!-- <img src="meta.png" alt="Meta Business Partners" /> -->
+        <img src="google-partner.png" alt="Google Partner" />
+        <img src="shopify.png" alt="Shopify Partner" />
+        <img src="tiktok.png" alt="TikTok Marketing Partner" />
+      </div>
+    </div>
+  </div>
+  <div class="sider-wrapper" data-aos="fade-up" data-aos-duration="1000">
+  <div class="sider-left">
+    <div class="tab active" data-tab="software">Software Development <span class="arrow"><i class="fas fa-arrow-right"></i></span></div>
+    <div class="mobile-content" data-content="software"></div>
+
+    <div class="tab" data-tab="website">Website Development <span class="arrow"><i class="fas fa-arrow-right"></i></span></div>
+    <div class="mobile-content" data-content="website"></div>
+
+    <div class="tab" data-tab="application">Application Development <span class="arrow"><i class="fas fa-arrow-right"></i></span></div>
+    <div class="mobile-content" data-content="application"></div>
+
+    <div class="tab" data-tab="access">Access Control System <span class="arrow"><i class="fas fa-arrow-right"></i></span></div>
+    <div class="mobile-content" data-content="access"></div>
+
+    <div class="tab" data-tab="cctv">CCTV Surveillance <span class="arrow"><i class="fas fa-arrow-right"></i></span></div>
+    <div class="mobile-content" data-content="cctv"></div>
+
+    <div class="tab" data-tab="graphic">Graphic Designing <span class="arrow"><i class="fas fa-arrow-right"></i></span></div>
+    <div class="mobile-content" data-content="graphic"></div>
+
+    <div class="tab" data-tab="digital">Digital Marketing <span class="arrow"><i class="fas fa-arrow-right"></i></span></div>
+    <div class="mobile-content" data-content="digital"></div>
+
+    <div class="tab" data-tab="network">Networking <span class="arrow"><i class="fas fa-arrow-right"></i></span></div>
+    <div class="mobile-content" data-content="network"></div>
+  </div>
+
+  <div class="sider-right">
+    <div class="text-content" id="text-content"></div>
+    <div class="circle-box" id="circle-box"></div>
+    <div class="dummy-text" id="dummy-text"></div> 
+  </div>
+</div>
+ <section class="info-form-section" data-aos="fade-up" data-aos-duration="1000">
+    <!-- <img src="images/image-removebg-preview.png" alt="Top Border Decoration" class="top-border-image"> -->
+
+    <div class="info-form-container">
+      <div class="left-info">
+        <h2>Get your free<br> marketing audit</h2>
+        <div class="point-row">
+          <div class="point">
+            <span class="circle-icon">✔</span>
+            <span class="point-text">30-min strategy call</span>
+          </div>
+          <div class="point">
+            <span class="circle-icon">✔</span>
+            <span class="point-text">In-depth audit</span>
+          </div>
+          <div class="point">
+            <span class="circle-icon">✔</span>
+            <span class="point-text">Growth Roadmap</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form">
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+        <form class="step-form">
+          <div class="input-row">
+            <input type="text" class="inputField" placeholder="Email" required />
+            <button type="button" class="prevBtn">Previous</button>
+            <button type="submit" class="nextBtn">Next</button>
+          </div>
+          <div class="success-msg">✔ Your Submission was successful</div>
+        </form>
+      </div>
+    </div>
+  </section>
+   <div class="blue-section-new" data-aos="fade-up" data-aos-duration="1000">
+
+    <!-- Text + Form -->
+    <div class="blue-top">
+      <div class="blue-left">
+        <h2>Get a Free<br> consultation to <br>boost your business</h2>
+        <p>A marketing audit is an evaluation of your company’s marketing efforts<br> and their effectiveness. Here what you will get:</p>
+        <div class="divider"></div>
+        <div class="points-list">
+          <div class="point-item"><div class="tick-icon">&#10003;</div><span>A marketing audit is an evaluation of your company's marketing efforts <br>and their effectiveness. Here what you will get:</span></div>
+          <div class="point-item"><div class="tick-icon">&#10003;</div><span>Evaluate your target audience to see if <br>they have changed or if you need to adjust your messaging to better reach them</span></div>
+          <div class="point-item"><div class="tick-icon">&#10003;</div><span>Analyze your website to ensure it is user-friendly, mobile-<br>responsive, and optimized for search engines.</span></div>
+          <div class="point-item"><div class="tick-icon">&#10003;</div><span>Review your content marketing efforts, including your blog posts,<br> social media, and email marketing.</span></div>
+        </div>
+      </div>
+
+      <div class="blue-right-form">
+        <div class="blue-form-wrapper">
+          <img src="images/mizzel-removebg-preview.png" alt="Rocket" class="rocket-img" />
+         <img src="images/image-removebg-preview.png" alt="Stars" class="stars-img" />
+
+          <div class="blue-form-box">
+            <h3>Get Started</h3>
+            <div class="progress-bar">
+              <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+
+            <form id="blueMultiStepForm">
+              <div id="blue-step1" class="blue-step active">
+                <input type="text" name="blue_name" placeholder="Your Full Name" required />
+                <input type="email" name="blue_email" placeholder="Your Email Address" required />
+              </div>
+
+              <div id="blue-step2" class="blue-step">
+                <input type="tel" name="blue_phone" placeholder="Your Phone Number" required />
+                <input type="url" name="blue_website" placeholder="Your Website" required />
+              </div>
+
+              <div id="blue-step3" class="blue-step">
+                <input type="text" name="blue_company" placeholder="Company Name" required />
+                <textarea name="blue_comment" placeholder="Any Question or Comment?" rows="4" required></textarea>
+              </div>
+
+              <div class="blue-form-buttons">
+                <div class="button-group">
+                  <button type="button" id="bluePrevBtn" class="hidden-new">Previous</button>
+                  <button type="button" id="blueNextBtn">Next</button>
+                </div>
+                <p class="success-message" id="successMessage">✔ Your submission was successful!</p>
+              </div>
+            </form>
+          </div>
+
+          <!-- 👇 Logos Directly Below Form -->
+          <div class="logos-below-form">
+            <p>Awarded Marketing<br> Agency</p>
+            <img src="meta.png" alt="Meta Business Partner" />
+            <img src="tick.png" alt="TikTok Partner" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT + PARTNER FULL WIDTH -->
+   <!-- <div class="contact-partners-section">
+  <div class="contact-content">
+    <div class="contact-left">
+      <img src="images/45.png" alt="Team or Office" />
+    </div>
+    <div class="contact-right">
+      We are committed to helping businesses grow with powerful digital marketing solutions tailored to their needs.
+    </div>
+  </div>
+</div> -->
+<!-- <div class="contact-partners-section">
+  <div class="contact-content">
+    <div class="contact-left">
+      <img src="images/44.png" alt="Profile">
+    </div>
+    <div class="contact-right">
+      <p class="quote-text">This is a quote-style text placed to the right of the image.</p>
+    </div>
+  </div>
+</div> -->
+ <section class="testimonial-section1" data-aos="fade-up" data-aos-duration="1000">
+    <div class="testimonial-image">
+     <div class="square-image">
+  <img src="images/44.png" alt="Team Image" />
+</div>
+
+    </div>
+    <div class="testimonial-content">
+      <div class="quote-icon">
+  <img src="images/comma.png" alt="Quote Icon" />
+</div>
+      <div class="testimonial-text">
+        We are dedicated to attracting exceptional talent from across the globe in our relentless pursuit of delivering the highest level of care to our esteemed clients. At Numerique, our organizational culture revolves around a set of core values: Trust, Transparency, Collaboration, Commitment, and Passion.
+      </div>
+      <div class="author-role">Head of Google Ads</div>
+      <div class="author-name">Isabel Warren</div>
+    </div>
+  </section>
+   <!-- <div class="wave-divider"></div> -->
+ <footer data-aos="fade-up" data-aos-duration="1000">
+    <!-- Solutions Grid Section -->
+    <div class="footer-column solutions-column">
+      <h4>SOLUTIONS</h4>
+      <div class="solutions-grid">
+        <ul>
+          <li>Paid search marketing</li>
+          <li>Email marketing</li>
+        </ul>
+        <ul>
+          <li>Social Media Marketing</li>
+          <li>Influencer marketing</li>
+        </ul>
+        <ul>
+          <li>Search engine optimization</li>
+          <li>Conversion rate optimization</li>
+        </ul>
+        <ul>
+          <li>Google shopping</li>
+          <li>Amazon shopping</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider below solutions -->
+    <hr class="footer-divider" />
+    <div class="footer-links-row" data-aos="fade-up" data-aos-duration="1000">
+      <div>
+        &copy; 2025 VamTam. All rights reserved. &nbsp;
+        <a href="#">Terms & Conditions</a> &nbsp;
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div class="social-icons">
+  <a href="#"><i class="fab fa-instagram"></i></a>
+  <a href="#"><i class="fab fa-twitter"></i></a>
+  <a href="#"><i class="fab fa-facebook-f"></i></a>
+  <a href="#"><i class="fab fa-youtube"></i></a>
+</div>
+    </div>
+
+   
+    <hr class="footer-divider" />
+<div style="font-size: 14px; color: #666; padding: 5px 0 ;font-family: 'Poppins', sans-serif; font-weight: 400;
+" >
+  This is some placeholder dummy text for demonstration purposes. You can replace this with any footer note, disclaimer, or custom message relevant to your website content.
+</div>
+  </footer>
+  </div>
+    <script src="Script/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+</html>
